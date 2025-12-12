@@ -1,5 +1,6 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
-
+import { Users, LayoutDashboard } from "lucide-react"
+import { NavLink } from "react-router"
+import { useLocation } from 'react-router-dom'
 import {
   Sidebar,
   SidebarContent,
@@ -15,46 +16,35 @@ import {
 const items = [
   {
     title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
+    url: "/",
+    icon: LayoutDashboard,
   },
   {
     title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
+    url: "/search",
+    icon: Users,
+  }
 ]
 
 export function AppSidebar() {
+
+  const location = useLocation();
+  const currentPath = location.pathname
+
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-2xl text-zinc-800 mb-3">AssoFinder</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                  <SidebarMenuButton className={`transition duration-150 ease-in-out ${currentPath == item.url  ? 'bg-zinc-100': ''}`} asChild>
+                    <NavLink to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
