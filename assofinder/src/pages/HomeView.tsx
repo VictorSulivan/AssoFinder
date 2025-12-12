@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Card from "@/components/card";
+import Card from "@/components/Card";
 import List from "@/components/List"; 
 import { LayoutList, List as ListIcon } from "lucide-react";
 
