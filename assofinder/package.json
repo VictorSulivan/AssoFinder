@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:ci": "vite test --no-watch --no-progress --code-coverage --browsers=ChromeHeadless"
+
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
@@ -22,7 +24,8 @@
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.10.1",
     "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "vercel": "^50.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
