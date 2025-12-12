@@ -1,9 +1,20 @@
 import { useState } from "react";
 import Card from "@/components/Card";
 import List from "@/components/List"; 
-import { LayoutList, List as ListIcon } from "lucide-react";
-
-// 1. Définition de l'interface pour le typage (Recommandé en TSX)
+import { LayoutList, List as ListIcon, ListFilter} from "lucide-react";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 interface Association {
     nom: string;
     description: string;
@@ -13,7 +24,8 @@ interface Association {
 }
 
 export default function HomeView() {
-    const [isGrid, setIsGrid] = useState(true); 
+    const [isGrid, setIsGrid] = useState(true);
+    const [isFilterOpen,setIsFilterOpen]=useState(false); 
 
     const cardItems: Association[] = [ 
         {
@@ -47,52 +59,87 @@ export default function HomeView() {
     ];
 
     return (
-        <div className="bg-white p-4">
-            <section className="flex justify-between items-center mb-6">
-                <h1 className="text-2xl font-semibold">Liste des Associations</h1>
-                <div className="flex gap-4">
-                    {/* Icône de vue Liste (LayoutList) -> isGrid = false */}
-                    <ListIcon 
-                        className={`stroke-zinc-700 cursor-pointer ${!isGrid ? 'text-blue-500' : ''}`} 
-                        onClick={() => setIsGrid(false)}
-                        size={24}
-                    />
-                    {/* Icône de vue Grille (LayoutList) -> isGrid = true */}
-                    <LayoutList 
-                        className={`stroke-zinc-700 cursor-pointer ${isGrid ? 'text-blue-500' : ''}`} 
-                        onClick={() => setIsGrid(true)}
-                        size={24}
-                    />
-                </div>
-            </section>
+        <>
+            <div className="bg-white p-4">
+                <section className="flex justify-between items-center mb-6">
+                    <div className="flex flex-col space-y-3">
+                        <h1 className="text-2xl font-semibold">Liste des Associations</h1>
+                        <ListFilter onClick={()=>setIsFilterOpen(true)} size={20}/>
+                    </div>
+                    <div className="flex gap-4">
+                        {/* Icône de vue Liste (LayoutList) -> isGrid = false */}
+                        <ListIcon 
+                            className={`stroke-zinc-700 cursor-pointer ${!isGrid ? 'stroke-blue-500' : ''}`} 
+                            onClick={() => setIsGrid(false)}
+                            size={24}
+                        />
+                        {/* Icône de vue Grille (LayoutList) -> isGrid = true */}
+                        <LayoutList 
+                            className={`stroke-zinc-700 cursor-pointer ${isGrid ? 'stroke-blue-500' : ''}`} 
+                            onClick={() => setIsGrid(true)}
+                            size={24}
+                        />
+                    </div>
+                </section>
 
-            {/*  `isGrid` */}
-            {isGrid ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {cardItems.map((item, index) => (
-                        <Card 
-                            key={item.nom || index} 
-                            title={item.nom}
-                            description={item.description}
-                            adresse={item.adresse}
-                            isActive={item.isActive}
-                        />
-                    ))}
-                </div>
-            ) : (
-                //List
-                <div className="flex flex-col gap-3">
-                    {cardItems.map((item, index) => (
-                        <List
-                            key={item.nom || index}
-                            title={item.nom}
-                            description={item.description}
-                            adresse={item.adresse}
-                            isActive={item.isActive}
-                        />
-                    ))}
-                </div>
-            )}
-        </div>
+                {/*  `isGrid` */}
+                {isGrid ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {cardItems.map((item, index) => (
+                            <Card 
+                                key={item.nom || index} 
+                                title={item.nom}
+                                description={item.description}
+                                adresse={item.adresse}
+                                isActive={item.isActive}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    //List
+                    <div className="flex flex-col gap-3">
+                        {cardItems.map((item, index) => (
+                            <List
+                                key={item.nom || index}
+                                title={item.nom}
+                                description={item.description}
+                                adresse={item.adresse}
+                                isActive={item.isActive}
+                            />
+                        ))}
+                    </div>
+                )}
+            </div>
+            {/** Modal Filtre */}
+
+            <Dialog open={isFilterOpen}>
+                <form>
+                    <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle>Filtre de recherche</DialogTitle>
+                        <DialogDescription>
+                            Affinez votre recherche en appliquant des critères spécifiques (localisation, activités, statut, etc.)
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-4">
+                        <div className="grid gap-3">
+                        <Label htmlFor="name-1">Nom de l'association</Label>
+                        <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
+                        </div>
+                        <div className="grid gap-3">
+                        {/* <Label htmlFor="username-1">Username</Label>
+                        <Input id="username-1" name="username" defaultValue="@peduarte" /> */}
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <DialogClose asChild>
+                        <Button variant="outline" onClick={()=>setIsFilterOpen(false)}>Cancel</Button>
+                        </DialogClose>
+                        <Button type="submit">Rechercher</Button>
+                    </DialogFooter>
+                    </DialogContent>
+                </form>
+            </Dialog>
+        </>
     );
 }
