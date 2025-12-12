@@ -42,3 +42,4 @@ npm run dev
 - Hajar KHOUYA (MTD)
 - François HATEM (MTD)
 - Dan ELENGA (LDF)
+///test discord config
