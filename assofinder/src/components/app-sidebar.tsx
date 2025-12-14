@@ -15,7 +15,7 @@ import {
 // Menu items.
 const items = [
   {
-    title: "Home",
+    title: "Accueil",
     url: "/",
     icon: LayoutDashboard,
   },
@@ -40,7 +40,7 @@ export function AppSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton className={`transition duration-150 ease-in-out ${currentPath == item.url  ? 'bg-zinc-100': ''}`} asChild>
+                  <SidebarMenuButton className={`transition duration-150 ease-in-out ${currentPath == item.url  ? 'bg-green-100': ''}`} asChild>
                     <NavLink to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>

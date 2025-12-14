@@ -59,22 +59,22 @@ export default function HomeView() {
 
     return (
         <>
-            <div className="bg-white p-4">
+            <div className="p-4 min-h-screen">
                 <section className="flex justify-between items-center mb-6">
                     <div className="flex flex-col space-y-3">
                         <h1 className="text-2xl font-semibold">Liste des Associations</h1>
-                        <ListFilter onClick={()=>setIsFilterOpen(true)} size={20}/>
+                        <ListFilter onClick={()=>setIsFilterOpen(true)} size={20} className="hover:stroke-green-400 transition ease-in-out duration-75 transform-stroke hover:scale-115 cursor-pointer"/>
                     </div>
                     <div className="flex gap-4">
                         {/* Icône de vue Liste (LayoutList) -> isGrid = false */}
                         <ListIcon 
-                            className={`stroke-zinc-700 cursor-pointer ${!isGrid ? 'stroke-blue-500' : ''}`} 
+                            className={`stroke-zinc-700 hover:stroke-green-400 transition ease-in-out duration-75 transform-stroke hover:scale-115 cursor-pointer`} 
                             onClick={() => setIsGrid(false)}
                             size={24}
                         />
                         {/* Icône de vue Grille (LayoutList) -> isGrid = true */}
                         <LayoutList 
-                            className={`stroke-zinc-700 cursor-pointer ${isGrid ? 'stroke-blue-500' : ''}`} 
+                            className={`stroke-zinc-700 hover:stroke-green-400 transition ease-in-out duration-75 transform-stroke hover:scale-115 cursor-pointer`} 
                             onClick={() => setIsGrid(true)}
                             size={24}
                         />
