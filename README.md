@@ -30,7 +30,7 @@ Il vise à :
 
 ## Accessibilité 
 
-Les utilisateurs peuvent pnavigaer sur le site sans savoir besoins de la souris, il peuvent saisir via la saisie vocale.
+Les utilisateurs peuvent naviguer sur le site sans avoir besoin de la souris. Ils peuvent également effectuer des saisies via la commande vocale.
 
 ### Comment ça marche ? 
 - `Tab` : Aller à l'élement focusable suivant
