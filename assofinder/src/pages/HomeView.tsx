@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Card from "@/components/Card";
 import List from "@/components/List"; 
-import { LayoutList, List as ListIcon, ListFilter, Mic} from "lucide-react";
+import { LayoutList, List as ListIcon, ListFilter} from "lucide-react";
 import {
   Dialog,
   DialogClose,
@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/dialog"
 
 import { Button } from "@/components/ui/button"
-// import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 interface Association {
     nom: string;
@@ -35,6 +34,8 @@ export default function HomeView() {
     const [assName, setAssName] = useState("");
     const [location, setLocation] = useState("");
     const [postalCode, setPostalCode] = useState("");
+
+    console.log(`Fiter => valeur de saisie : ${assName} / ${location} / ${postalCode}`);
 
     /**
      * Données fictives des cartes d'associations
