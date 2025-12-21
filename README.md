@@ -17,6 +17,27 @@ Il vise à :
 
 - React
 - Tailwind CSS
+- Shadcn
+
+## Fonctionnalité : 
+
+- Accessibilité / navigation au clavier
+- Saisie vocale
+- Affichage des associations en liste ou en grille
+- Barre de recherche
+- Systeme de filtres
+- Mise en place de raccourcis clavier
+
+## Accessibilité 
+
+Les utilisateurs peuvent pnavigaer sur le site sans savoir besoins de la souris, il peuvent saisir via la saisie vocale.
+
+### Comment ça marche ? 
+- `Tab` : Aller à l'élement focusable suivant
+- `Shift + Tab` : Revenir à l'élément précédent
+- `Enter ou Space` : Activer un bouton ou un lien 
+- `Esc` : Fermer une bvoite de dialog ou un Popup
+- `↑ ↓ ← →` : Navigation dans le menu ou barre de navigation
 
 ## Installation du projet
 
