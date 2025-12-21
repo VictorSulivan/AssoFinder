@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Card from "@/components/Card";
 import List from "@/components/List"; 
-import { LayoutList, List as ListIcon, ListFilter} from "lucide-react";
+import { LayoutList, List as ListIcon, ListFilter, Mic} from "lucide-react";
 import {
   Dialog,
   DialogClose,
@@ -11,8 +11,9 @@ import {
   DialogHeader,
   DialogTitle
 } from "@/components/ui/dialog"
+
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+// import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 interface Association {
     nom: string;
@@ -21,11 +22,23 @@ interface Association {
     activites: string[];
     isActive: boolean;
 }
+import InputVoice from "@/components/InputVoice";
 
 export default function HomeView() {
+
     const [isGrid, setIsGrid] = useState(true);
     const [isFilterOpen,setIsFilterOpen]=useState(false); 
 
+    /**
+     * Variables pour les filtres de recherche
+     */
+    const [assName, setAssName] = useState("");
+    const [location, setLocation] = useState("");
+    const [postalCode, setPostalCode] = useState("");
+
+    /**
+     * Données fictives des cartes d'associations
+     */
     const cardItems: Association[] = [ 
         {
             nom: "Les Jardins du Quartier",
@@ -59,28 +72,26 @@ export default function HomeView() {
 
     return (
         <>
-            <div className="bg-white p-4">
+            <div className="p-4 min-h-screen">
                 <section className="flex justify-between items-center mb-6">
                     <div className="flex flex-col space-y-3">
                         <h1 className="text-2xl font-semibold">Liste des Associations</h1>
-                        <ListFilter onClick={()=>setIsFilterOpen(true)} size={20}/>
+                        <Button variant="outline" onClick={()=>setIsFilterOpen(true)}  className="w-10">
+                            <ListFilter  size={20}/>        
+                        </Button>
                     </div>
                     <div className="flex gap-4">
                         {/* Icône de vue Liste (LayoutList) -> isGrid = false */}
-                        <ListIcon 
-                            className={`stroke-zinc-700 cursor-pointer ${!isGrid ? 'stroke-blue-500' : ''}`} 
-                            onClick={() => setIsGrid(false)}
-                            size={24}
-                        />
+                        <Button variant="outline" onClick={() => setIsGrid(false)}>
+                            <ListIcon size={24}/>
+                        </Button>
+                        
                         {/* Icône de vue Grille (LayoutList) -> isGrid = true */}
-                        <LayoutList 
-                            className={`stroke-zinc-700 cursor-pointer ${isGrid ? 'stroke-blue-500' : ''}`} 
-                            onClick={() => setIsGrid(true)}
-                            size={24}
-                        />
+                        <Button variant="outline" onClick={() => setIsGrid(true)}>
+                            <LayoutList size={24}/>
+                        </Button>
                     </div>
                 </section>
-
                 {/*  `isGrid` */}
                 {isGrid ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -111,9 +122,10 @@ export default function HomeView() {
             </div>
             {/** Modal Filtre */}
 
-            <Dialog open={isFilterOpen}>
+            <Dialog open={isFilterOpen} onOpenChange={setIsFilterOpen}>
                 <form>
-                    <DialogContent className="sm:max-w-[425px]">
+                    <DialogContent className="sm:max-w-106.25"> 
+                        
                     <DialogHeader>
                         <DialogTitle>Filtre de recherche</DialogTitle>
                         <DialogDescription>
@@ -122,12 +134,32 @@ export default function HomeView() {
                     </DialogHeader>
                     <div className="grid gap-4">
                         <div className="grid gap-3">
-                        <Label htmlFor="name-1">Nom de l'association</Label>
-                        <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
+                            <Label htmlFor="name">Nom de l'association</Label>
+                            <InputVoice
+                                onVoiceInput={setAssName}
+                                name="name"
+                                placeholder="Nom de l'association"
+                            />
                         </div>
-                        <div className="grid gap-3">
-                        {/* <Label htmlFor="username-1">Username</Label>
-                        <Input id="username-1" name="username" defaultValue="@peduarte" /> */}
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div className="space-y-2">
+                                <Label htmlFor="adresse">Adresse</Label>
+                                <InputVoice
+                                    onVoiceInput={setLocation}
+                                    name="adresse"
+                                    placeholder="Paris, 75000"
+                                />
+                            </div>
+
+                             <div className="space-y-2">
+                                <Label htmlFor="code">Code postal</Label>
+                                <InputVoice
+                                    onVoiceInput={setPostalCode}
+                                    name="code"
+                                    placeholder="92000"
+                                />
+                            </div>
                         </div>
                     </div>
                     <DialogFooter>
@@ -136,7 +168,7 @@ export default function HomeView() {
                         </DialogClose>
                         <Button type="submit">Rechercher</Button>
                     </DialogFooter>
-                    </DialogContent>
+                    </DialogContent>            
                 </form>
             </Dialog>
         </>
