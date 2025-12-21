@@ -36,7 +36,7 @@ Les utilisateurs peuvent naviguer sur le site sans avoir besoin de la souris. Il
 - `Tab` : Aller à l'élement focusable suivant
 - `Shift + Tab` : Revenir à l'élément précédent
 - `Enter ou Space` : Activer un bouton ou un lien 
-- `Esc` : Fermer une bvoite de dialog ou un Popup
+- `Esc` : Fermer une boite de dialog ou un Popup
 - `↑ ↓ ← →` : Navigation dans le menu ou barre de navigation
 
 ## Installation du projet
