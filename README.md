@@ -12,21 +12,134 @@ Il vise à :
 - Lutter contre le sentiment de solitude et la sous-stimulation.4
 - Favoriser la participation sociale et le lien intergénérationnel.
 - Ouvrir l'EHPAD sur le tissu associatif local, en phase avec les tendances 2025.
+# Documentation technique du projet
 
-## Technologies
+## Technologies utilisées
 
 - React
 - Tailwind CSS
 - Shadcn
+- Vitest
+- Vercel
+- WebHooks
 
-## Fonctionnalité : 
+## Fonctionnalités
 
-- Accessibilité / navigation au clavier
+- Accessibilité et navigation au clavier
 - Saisie vocale
 - Affichage des associations en liste ou en grille
 - Barre de recherche
-- Systeme de filtres
+- Système de filtres
 - Mise en place de raccourcis clavier
+
+## Configuration DevOps
+
+### Tests de composants
+
+**Technologies utilisées :** Vitest, @testing-library/react
+
+**Documentation :** [Guide Vitest](https://vitest.dev/guide/)
+
+**Exemple de test :** `src/components/ui/button.test.tsx`
+
+**Configuration du projet** (`vitest.config.ts` à la racine du projet) :
+
+```typescript
+import { defineConfig } from 'vitest/config'
+import path from "path"
+
+export default defineConfig({
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: ["./src/test/setup.ts"],
+  },
+})
+```
+
+**Commandes de lancement des tests :**
+
+- `npm run test chemin/vers/fichier/de/test` - Exécute un test spécifique (à lancer depuis la racine du projet)
+- `npm run test` - Exécute tous les tests (à lancer depuis la racine du projet)
+
+### Mise en production du projet
+
+**Technologies utilisées :** Vercel, GitHub
+
+**Documentation :**
+- [Création d'un repository GitHub](https://docs.github.com/fr/repositories/creating-and-managing-repositories/creating-a-new-repository)
+- [Documentation Vercel](https://vercel.com/docs)
+
+**Procédure :**
+
+1. Créer un espace Vercel pour déployer l'application
+2. Créer un repository GitHub pour héberger le projet
+3. Choisir la stack dans Vercel et l'associer au projet GitHub
+4. Configurer les commandes dans Vercel pour installer les librairies, builder le projet et le mettre en ligne
+
+**Fonctionnement :** Mise en production automatique à chaque mise à jour de la branche `main` sur GitHub.
+
+### Déploiement manuel
+
+**Technologie utilisée :** GitHub Actions
+
+**Documentation :** [Guide GitHub Actions](https://docs.github.com/fr/actions)
+
+**Exemple :** `.github/workflows/production.yaml`
+
+**Configuration pour le déploiement automatique :**
+
+```yaml
+name: Vercel Production Deployment
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+on:
+  push:
+    tags:
+      - 'deploy-*'
+
+jobs:
+  Deploy-Production:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+```
+
+**Fonctionnement :** Mise en production exécutée en ligne de commande.
+
+### Notifications des actions sur le repository
+
+**Technologies utilisées :** WebHooks, Discord
+
+**Procédure :**
+
+1. Créer un serveur Discord
+2. Créer un channel dédié sur Discord
+3. Dans les paramètres du channel, aller dans Intégrations et créer un webhook, puis récupérer l'URL associée
+4. Dans GitHub, aller dans Settings > Webhooks, créer un webhook et insérer l'URL récupérée sur Discord, puis sélectionner `application/json`
+
+**Fonctionnement :** Ce système permet de recevoir des notifications envoyées par GitHub dans le channel Discord pour être informé de toutes les actions réalisées sur le repository par les développeurs. Vous serez notifié des succès comme des erreurs concernant les GitHub Actions, pull requests, mises en production, etc.
 
 ## Accessibilité 
 
