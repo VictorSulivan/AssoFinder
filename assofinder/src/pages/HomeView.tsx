@@ -29,7 +29,7 @@ interface Association {
 
 export default function HomeView() {
 
-    const [isGrid, setIsGrid] = useState(true);
+    const [isGrid, setIsGrid] = useState(false);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
 
     /**
