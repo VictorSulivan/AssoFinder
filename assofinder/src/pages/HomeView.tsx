@@ -225,7 +225,7 @@ export default function HomeView() {
                     <div className="flex flex-col space-y-3">
                         <h1 className="text-2xl font-semibold">Liste des Associations</h1>
                         <div className="flex items-center gap-2">
-                            <Button variant="outline" onClick={() => setIsFilterOpen(true)} className="w-10">
+                            <Button variant="outline" onClick={() => setIsFilterOpen(true)} className="w-10" aria-label="Filter search">
                                 <ListFilter size={20} />
                             </Button>
                             {/* Petit badge pour indiquer si des filtres sont actifs */}
@@ -237,10 +237,10 @@ export default function HomeView() {
                         </div>
                     </div>
                     <div className="flex gap-4">
-                        <Button variant={!isGrid ? "default" : "outline"} onClick={() => setIsGrid(false)}>
+                        <Button variant={!isGrid ? "default" : "outline"} onClick={() => setIsGrid(false)} aria-label="List view">
                             <ListIcon size={24} />
                         </Button>
-                        <Button variant={isGrid ? "default" : "outline"} onClick={() => setIsGrid(true)}>
+                        <Button variant={isGrid ? "default" : "outline"} onClick={() => setIsGrid(true)} aria-label="Grid view">
                             <LayoutList size={24} />
                         </Button>
                     </div>
