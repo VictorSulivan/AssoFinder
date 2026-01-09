@@ -35,12 +35,12 @@ export default function Page() {
         <header className="flex h-16 shrink-0 items-center gap-2 border-b">
           <div className="flex justify-between items-center w-full px-4">
             <div className="flex items-center">
-              <SidebarTrigger />
+              <SidebarTrigger aria-label="Ouvrir/fermer le menu de navigation" />
               <Separator orientation="vertical" className="mr-2 h-4" />
-              <Breadcrumb>
+              <Breadcrumb aria-label="Fil d'Ariane">
                 <BreadcrumbList>
                   <BreadcrumbItem className="hidden md:block">
-                    <BreadcrumbLink href="#">
+                    <BreadcrumbLink href="#" aria-label="Accueil">
                       Accueil
                     </BreadcrumbLink>
                   </BreadcrumbItem>
