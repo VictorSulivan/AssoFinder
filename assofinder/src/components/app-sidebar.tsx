@@ -1,4 +1,4 @@
-import { Users, LayoutDashboard } from "lucide-react"
+import { LayoutDashboard } from "lucide-react"
 import { NavLink } from "react-router"
 import { useLocation } from 'react-router-dom'
 import {
@@ -19,11 +19,11 @@ const items = [
     url: "/",
     icon: LayoutDashboard,
   },
-  {
-    title: "Search",
-    url: "/search",
-    icon: Users,
-  }
+  // {
+  //   title: "Search",
+  //   url: "/search",
+  //   icon: Users,
+  // }
 ]
 
 export function AppSidebar() {
@@ -40,7 +40,7 @@ export function AppSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton className={`transition duration-150 ease-in-out ${currentPath == item.url  ? 'bg-green-100': ''}`} asChild>
+                  <SidebarMenuButton className={`transition duration-150 ease-in-out ${currentPath == item.url ? 'bg-green-100' : ''}`} asChild>
                     <NavLink to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
