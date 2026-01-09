@@ -19,9 +19,9 @@ function Card(props: any) {
                     <div className="p-6">
                         <span className={`mb-4 rounded-full  px-2.5 border border-transparent text-xs text-zinc-100 transition-all shadow-sm w-20 text-center ${props.isActive ? 'bg-green-600' : 'bg-red-600'}`}>{props.isActive ? "Ouvert" : "Fermé"}</span>
                         {/**Title */}
-                        <h4 className="mb-2 text-slate-800 text-xl font-semibold">
+                        <h2 className="mb-2 text-slate-800 text-xl font-semibold">
                             {props.title ?? "Lyft launching cross-platform service this week"}
-                        </h4>
+                        </h2>
                         <section className="space-y-1">
                             {/**Description */}
                             <p className="text-slate-600 leading-normal font-light">
@@ -38,8 +38,6 @@ function Card(props: any) {
                             <MoveRight />
                         </NavLink>
                     </div>
-
-
                 </div>
             </div>
         </>
