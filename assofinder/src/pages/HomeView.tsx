@@ -21,6 +21,7 @@ interface Association {
     description: string;
     adresse: string;
     activites: string[];
+    zipCode: string;
     isActive: boolean;
     url: string;
     categorie: string;
@@ -50,8 +51,9 @@ export default function HomeView() {
             description: "Association qui crée des fermes urbaines en milieu scolaire et social pour reconnecter les citadins à la terre.",
             adresse: "14 Rue des Lilas, 75019 Paris, France",
             activites: ["Agriculture urbaine", "Ateliers pédagogiques", "Compostage"],
+            zipCode: "75019",
             isActive: true,
-            url: "https://www.veniverdi.fr/",
+            url: "https://veniverdi.fr/",
             categorie: "Environnement",
             imageUrl: "https://images.unsplash.com/photo-1592419044706-39796d40f98c?q=80&w=800&auto=format&fit=crop"
         },
@@ -60,6 +62,8 @@ export default function HomeView() {
             description: "Réseau de fabriques numériques inclusives qui forme les personnes éloignées de l'emploi aux métiers du développement.",
             adresse: "55 Rue de Vincennes, 93100 Montreuil, France",
             activites: ["Bootcamps de code", "Formation cybersécurité", "Insertion pro"],
+            zipCode: "93100",
+
             isActive: true,
             url: "https://simplon.co/",
             categorie: "Numérique & Insertion",
@@ -70,6 +74,8 @@ export default function HomeView() {
             description: "Programme national d'ouverture à la lecture et de solidarité intergénérationnelle porté par des bénévoles de plus de 50 ans.",
             adresse: "3 Rue Récamier, 75007 Paris, France",
             activites: ["Séances de lecture", "Rencontres intergénérationnelles"],
+            zipCode: "75007",
+
             isActive: true,
             url: "https://www.lireetfairelire.org/",
             categorie: "Éducation",
@@ -80,6 +86,7 @@ export default function HomeView() {
             description: "Lieu de création et de diffusion, de recherche et d'expérience destiné à accueillir des artistes de toutes disciplines.",
             adresse: "1 Rue Charles Garnier, 93400 Saint-Ouen-sur-Seine, France",
             activites: ["Résidences d'artistes", "Concerts", "Expositions"],
+            zipCode: "75007",
             isActive: true,
             url: "https://www.mainsdoeuvres.org/",
             categorie: "Art & Culture",
@@ -90,6 +97,7 @@ export default function HomeView() {
             description: "Association à but non lucratif qui lutte contre la pauvreté et l'exclusion en France et dans le monde.",
             adresse: "9-11 Rue Froissart, 75003 Paris, France",
             activites: ["Aide alimentaire", "Accès à la culture", "Accompagnement scolaire"],
+            zipCode: "75003",
             isActive: true,
             url: "https://www.secourspopulaire.fr/",
             categorie: "Solidarité",
@@ -100,6 +108,7 @@ export default function HomeView() {
             description: "Mouvement de lutte contre la pauvreté et l'exclusion par l'accueil de compagnes et compagnons et la vente solidaire.",
             adresse: "47 Avenue de la Résistance, 93100 Montreuil, France",
             activites: ["Collecte d'objets", "Réemploi et recyclage", "Accueil inconditionnel"],
+            zipCode: "93100",
             isActive: true,
             url: "https://emmaus-france.org/",
             categorie: "Solidarité & Logement",
@@ -110,6 +119,7 @@ export default function HomeView() {
             description: "Assistance bénévole aux personnes démunies, notamment par l'aide alimentaire et l'accompagnement à l'insertion.",
             adresse: "42 Rue de Clichy, 75009 Paris, France",
             activites: ["Distribution de repas", "Aide aux bébés", "Soutien à la recherche d'emploi"],
+            zipCode: "75009",
             isActive: true,
             url: "https://www.restosducoeur.org/",
             categorie: "Solidarité & Alimentaire",
@@ -120,6 +130,7 @@ export default function HomeView() {
             description: "Association citoyenne qui informe sur la problématique des déchets et milite pour leur réduction à la source.",
             adresse: "2 Passage de la Bonne Graine, 75011 Paris, France",
             activites: ["Ateliers zéro déchet", "Plaidoyer politique", "Conférences"],
+            zipCode: "75011",
             isActive: true,
             url: "https://www.zerowastefrance.org/",
             categorie: "Environnement",
@@ -130,6 +141,7 @@ export default function HomeView() {
             description: "Accompagnement des jeunes issus de milieux populaires vers la réussite scolaire et professionnelle.",
             adresse: "29 Boulevard Bourdon, 75004 Paris, France",
             activites: ["Mentorat", "Ateliers soft skills", "Plateforme de mise en relation"],
+            zipCode: "75004",
             isActive: true,
             url: "https://article-1.eu/",
             categorie: "Éducation & Égalité",
@@ -140,6 +152,7 @@ export default function HomeView() {
             description: "Lutte contre la fracture numérique en proposant du matériel, des connexions et des formations à prix solidaire.",
             adresse: "71 Rue Archereau, 75019 Paris, France",
             activites: ["Vente de matériel reconditionné", "Ateliers d'initiation numérique", "Permanences connectées"],
+            zipCode: "75019",
             isActive: true,
             url: "https://emmaus-connect.org/",
             categorie: "Numérique & Inclusion",
@@ -150,6 +163,7 @@ export default function HomeView() {
             description: "Mouvement humanitaire protégeant la vie et la santé et assurant le respect de l'être humain.",
             adresse: "98 Rue Didot, 75014 Paris, France",
             activites: ["Secourisme", "Action sociale", "Aide internationale"],
+            zipCode: "75014",
             isActive: true,
             url: "https://www.croix-rouge.fr/",
             categorie: "Santé & Urgence",
@@ -160,16 +174,18 @@ export default function HomeView() {
             description: "Organisation créant des liens entre les personnes nouvellement arrivées (réfugiés) et les membres de la société d'accueil.",
             adresse: "127 Rue d'Aubervilliers, 75019 Paris, France",
             activites: ["Programmes d'incubation", "Activités sportives et culturelles", "Colocation solidaire"],
+            zipCode: "75019",
             isActive: true,
             url: "https://www.singafrance.com/",
             categorie: "Inclusion & Migration",
             imageUrl: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop"
         },
         {
-            nom: "Fondation Abbé Pierre",
+            nom: "Fondation Pour le logement",
             description: "Agit pour que les personnes les plus démunies puissent accéder à un logement décent et une vie digne.",
             adresse: "3 Rue de Romainville, 75019 Paris, France",
             activites: ["Construction de logements très sociaux", "Lutte contre l'habitat indigne", "Accueil de jour"],
+            zipCode: "75019",
             isActive: true,
             url: "https://www.fondation-abbe-pierre.fr/",
             categorie: "Logement",
@@ -180,6 +196,7 @@ export default function HomeView() {
             description: "Dédiée à la protection et à la mise en valeur de l'océan, des vagues et du littoral.",
             adresse: "33 Allée du Moura, 64200 Biarritz, France",
             activites: ["Nettoyages de plages", "Campagnes de sensibilisation", "Surveillance qualité de l'eau"],
+            zipCode: "64200",
             isActive: true,
             url: "https://surfrider.eu/",
             categorie: "Environnement & Océan",
