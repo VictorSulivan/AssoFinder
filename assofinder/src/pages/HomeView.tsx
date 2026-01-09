@@ -77,18 +77,18 @@ export default function HomeView() {
                 <section className="flex justify-between items-center mb-6">
                     <div className="flex flex-col space-y-3">
                         <h1 className="text-2xl font-semibold">Liste des Associations</h1>
-                        <Button variant="outline" onClick={()=>setIsFilterOpen(true)}  className="w-10">
+                        <Button aria-label="Filtre de recherche" variant="outline" onClick={()=>setIsFilterOpen(true)}  className="w-10">
                             <ListFilter  size={20}/>        
                         </Button>
                     </div>
                     <div className="flex gap-4">
                         {/* Icône de vue Liste (LayoutList) -> isGrid = false */}
-                        <Button variant="outline" onClick={() => setIsGrid(false)}>
+                        <Button aria-label="Vue en liste" variant="outline" onClick={() => setIsGrid(false)}>
                             <ListIcon size={24}/>
                         </Button>
                         
                         {/* Icône de vue Grille (LayoutList) -> isGrid = true */}
-                        <Button variant="outline" onClick={() => setIsGrid(true)}>
+                        <Button aria-label="Vue en grille" variant="outline" onClick={() => setIsGrid(true)}>
                             <LayoutList size={24}/>
                         </Button>
                     </div>

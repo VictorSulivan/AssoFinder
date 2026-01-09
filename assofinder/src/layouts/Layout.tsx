@@ -37,7 +37,7 @@ export default function Page() {
             <div className="flex items-center">
               <SidebarTrigger />
               <Separator orientation="vertical" className="mr-2 h-4" />
-              <Breadcrumb>
+              <Breadcrumb aria-label="Fil d'Ariane">
                 <BreadcrumbList>
                   <BreadcrumbItem className="hidden md:block">
                     <BreadcrumbLink href="#">
@@ -51,11 +51,11 @@ export default function Page() {
                 </BreadcrumbList>
               </Breadcrumb>
             </div>
-            <div className="flex w-full max-w-xs flex-col gap-6">
+            <div className="flex w-full max-w-xs flex-col gap-6" aria-label="Search">
               <InputGroup>
-                <InputGroupInput placeholder="Rechercher..." />
+                <InputGroupInput placeholder="Search..." />
                 <InputGroupAddon>
-                  <SearchIcon />
+                  <SearchIcon/>
                 </InputGroupAddon>
                 <InputGroupAddon align="inline-end">
                   <Kbd>⌘</Kbd>

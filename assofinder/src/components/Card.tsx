@@ -5,7 +5,7 @@ import { NavLink } from "react-router";
 function Card(props:any){
     return (
         <>
-        <div className="relative flex flex-col md:flex-row w-full py-0.5 my-2 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
+        <div  className="relative flex flex-col md:flex-row w-full py-0.5 my-2 bg-white shadow-sm border border-slate-200 rounded-lg w-96">
             <div className="relative p-2.5 md:w-2/5 shrink-0 overflow-hidden">
                 {/**Image */}
                 <img
@@ -33,7 +33,7 @@ function Card(props:any){
                     </section>
                     <br />
 
-                    <NavLink to="#" className="hover:underline flex items-center gap-2">
+                    <NavLink  to="#" className="hover:underline flex items-center gap-2">
                         Découvrir l'association
                         <MoveRight/>
                     </NavLink>
