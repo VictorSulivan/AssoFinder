@@ -30,13 +30,13 @@ Il vise à :
 
 ## Accessibilité 
 
-Les utilisateurs peuvent pnavigaer sur le site sans savoir besoins de la souris, il peuvent saisir via la saisie vocale.
+Les utilisateurs peuvent naviguer sur le site sans avoir besoin de la souris. Ils peuvent également effectuer des saisies via la commande vocale.
 
 ### Comment ça marche ? 
 - `Tab` : Aller à l'élement focusable suivant
 - `Shift + Tab` : Revenir à l'élément précédent
 - `Enter ou Space` : Activer un bouton ou un lien 
-- `Esc` : Fermer une bvoite de dialog ou un Popup
+- `Esc` : Fermer une boite de dialog ou un Popup
 - `↑ ↓ ← →` : Navigation dans le menu ou barre de navigation
 
 ## Installation du projet
