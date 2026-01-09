@@ -13,17 +13,17 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "@/components/ui/input-group"
-import { Kbd } from "@/components/ui/kbd"
+// import {
+//   InputGroup,
+//   InputGroupAddon,
+//   InputGroupInput,
+// } from "@/components/ui/input-group"
+// import { Kbd } from "@/components/ui/kbd"
 // React Router
 import { Outlet } from "react-router"
 import { useLocation } from 'react-router-dom'
 // Icons
-import { SearchIcon } from "lucide-react"
+// import { SearchIcon } from "lucide-react"
 export default function Page() {
 
   const location = useLocation();
@@ -51,7 +51,7 @@ export default function Page() {
                 </BreadcrumbList>
               </Breadcrumb>
             </div>
-            <div className="flex w-full max-w-xs flex-col gap-6">
+            {/* <div className="flex w-full max-w-xs flex-col gap-6">
               <InputGroup>
                 <InputGroupInput placeholder="Rechercher..." />
                 <InputGroupAddon>
@@ -62,11 +62,11 @@ export default function Page() {
                   <Kbd>K</Kbd>
                 </InputGroupAddon>
               </InputGroup>
-            </div>
+            </div> */}
           </div>
         </header>
         <div className="bg-gradient-to-br from-green-200 via-white to-blue-50">
-          <Outlet/>
+          <Outlet />
         </div>
       </SidebarInset>
     </SidebarProvider>
