@@ -4,7 +4,6 @@ import List from "@/components/List";
 import { LayoutList, List as ListIcon, ListFilter } from "lucide-react";
 import {
     Dialog,
-    DialogClose,
     DialogContent,
     DialogDescription,
     DialogFooter,
@@ -75,7 +74,6 @@ export default function HomeView() {
             adresse: "3 Rue Récamier, 75007 Paris, France",
             activites: ["Séances de lecture", "Rencontres intergénérationnelles"],
             zipCode: "75007",
-
             isActive: true,
             url: "https://www.lireetfairelire.org/",
             categorie: "Éducation",
@@ -204,112 +202,125 @@ export default function HomeView() {
         }
     ];
 
+    const filteredItems = cardItems.filter((item) => {
+        const matchName = item.nom.toLowerCase().includes(assName.toLowerCase());
+        const matchLocation = item.adresse.toLowerCase().includes(location.toLowerCase());
+        const matchZip = item.zipCode.includes(postalCode);
+
+        return matchName && matchLocation && matchZip;
+    });
+
+    /**
+     * Gestion de la soumission du formulaire
+     */
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsFilterOpen(false); // On ferme la modal une fois la recherche "validée"
+    };
+
     return (
         <>
             <div className="p-4 min-h-screen">
                 <section className="flex justify-between items-center mb-6">
                     <div className="flex flex-col space-y-3">
                         <h1 className="text-2xl font-semibold">Liste des Associations</h1>
-                        <Button variant="outline" onClick={() => setIsFilterOpen(true)} className="w-10">
-                            <ListFilter size={20} />
-                        </Button>
+                        <div className="flex items-center gap-2">
+                            <Button variant="outline" onClick={() => setIsFilterOpen(true)} className="w-10">
+                                <ListFilter size={20} />
+                            </Button>
+                            {/* Petit badge pour indiquer si des filtres sont actifs */}
+                            {(assName || location || postalCode) && (
+                                <span className="text-sm text-muted-foreground">
+                                    {filteredItems.length} résultat(s) trouvé(s)
+                                </span>
+                            )}
+                        </div>
                     </div>
                     <div className="flex gap-4">
-                        {/* Icône de vue Liste (LayoutList) -> isGrid = false */}
-                        <Button variant="outline" onClick={() => setIsGrid(false)}>
+                        <Button variant={!isGrid ? "default" : "outline"} onClick={() => setIsGrid(false)}>
                             <ListIcon size={24} />
                         </Button>
-
-                        {/* Icône de vue Grille (LayoutList) -> isGrid = true */}
-                        <Button variant="outline" onClick={() => setIsGrid(true)}>
+                        <Button variant={isGrid ? "default" : "outline"} onClick={() => setIsGrid(true)}>
                             <LayoutList size={24} />
                         </Button>
                     </div>
                 </section>
-                {/*  `isGrid` */}
-                {isGrid ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {cardItems.map((item, index) => (
-                            <Card
-                                key={item.nom || index}
-                                title={item.nom}
-                                description={item.description}
-                                adresse={item.adresse}
-                                isActive={item.isActive}
-                                url={item.url}
-                                categorie={item.categorie}
-                                imageUrl={item.imageUrl}
-                            />
-                        ))}
-                    </div>
+
+                {/* Affichage des résultats ou message "vide" */}
+                {filteredItems.length > 0 ? (
+                    isGrid ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {filteredItems.map((item, index) => (
+                                <Card key={index} {...item} title={item.nom} />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="flex flex-col gap-3">
+                            {filteredItems.map((item, index) => (
+                                <List key={index} {...item} title={item.nom} />
+                            ))}
+                        </div>
+                    )
                 ) : (
-                    //List
-                    <div className="flex flex-col gap-3">
-                        {cardItems.map((item, index) => (
-                            <List
-                                key={item.nom || index}
-                                title={item.nom}
-                                description={item.description}
-                                adresse={item.adresse}
-                                isActive={item.isActive}
-                                url={item.url}
-                                categorie={item.categorie}
-                                imageUrl={item.imageUrl}
-                            />
-                        ))}
+                    <div className="text-center py-20 text-muted-foreground">
+                        Aucune association ne correspond à vos critères.
                     </div>
                 )}
             </div>
+
             {/** Modal Filtre */}
-
             <Dialog open={isFilterOpen} onOpenChange={setIsFilterOpen}>
-                <form>
-                    <DialogContent className="sm:max-w-106.25">
-
+                <DialogContent className="sm:max-w-md">
+                    <form onSubmit={handleSearch}>
                         <DialogHeader>
                             <DialogTitle>Filtre de recherche</DialogTitle>
                             <DialogDescription>
-                                Affinez votre recherche en appliquant des critères spécifiques (localisation, activités, statut, etc.)
+                                Affinez votre recherche en appliquant des critères spécifiques.
                             </DialogDescription>
                         </DialogHeader>
-                        <div className="grid gap-4">
-                            <div className="grid gap-3">
+
+                        <div className="grid gap-4 py-4">
+                            <div className="grid gap-2">
                                 <Label htmlFor="name">Nom de l'association</Label>
                                 <InputVoice
                                     onVoiceInput={setAssName}
                                     name="name"
-                                    placeholder="Nom de l'association"
+                                    placeholder="Ex: Emmaüs..."
                                 />
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <Label htmlFor="adresse">Adresse</Label>
+                                    <Label htmlFor="adresse">Ville / Adresse</Label>
                                     <InputVoice
                                         onVoiceInput={setLocation}
                                         name="adresse"
-                                        placeholder="Paris, 75000"
+                                        placeholder="Paris, Lyon..."
                                     />
                                 </div>
-
                                 <div className="space-y-2">
                                     <Label htmlFor="code">Code postal</Label>
                                     <InputVoice
                                         onVoiceInput={setPostalCode}
                                         name="code"
-                                        placeholder="92000"
+                                        placeholder="75000"
                                     />
                                 </div>
                             </div>
                         </div>
-                        <DialogFooter>
-                            <DialogClose asChild>
-                                <Button variant="outline" onClick={() => setIsFilterOpen(false)}>Cancel</Button>
-                            </DialogClose>
-                            <Button type="submit">Rechercher</Button>
+
+                        <DialogFooter className="gap-2">
+                            <Button
+                                type="button"
+                                variant="ghost"
+                                onClick={() => { setAssName(""); setLocation(""); setPostalCode(""); }}
+                            >
+                                Réinitialiser
+                            </Button>
+                            <Button type="submit">Appliquer</Button>
                         </DialogFooter>
-                    </DialogContent>
-                </form>
+                    </form>
+                </DialogContent>
             </Dialog>
         </>
     );
