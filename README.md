@@ -23,6 +23,21 @@ Il vise à :
 - Vercel
 - WebHooks
 
+## Justifications de nos choix techniques
+
+Dans un contexte de temps limité et avec l’objectif de livrer un MVP fonctionnel, nous avons privilégié des technologies modernes, éprouvées et adaptées aux enjeux d’accessibilité pour les personnes malentendantes et malvoyantes.
+
+- **React** a été choisi pour sa flexibilité et sa capacité à structurer rapidement une interface accessible, tout en facilitant la gestion des composants et des états.
+- **Tailwind CSS** permet un prototypage rapide et cohérent, tout en offrant un contrôle précis sur le contraste, la lisibilité et la responsivité, éléments clés pour l’accessibilité visuelle.
+- **Shadcn** repose sur des composants accessibles par défaut (ARIA, navigation clavier), ce qui réduit le risque d’erreurs d’accessibilité et accélère le développement.
+- **Vercel** facilite le déploiement continu et permet une mise en ligne rapide, indispensable dans une démarche itérative centrée sur l’utilisateur.
+
+## Contraintes liées à l’utilisation des API
+
+Face aux limitations des API (quotas de requêtes, problèmes d’authentification et incertitude sur la fiabilité des données), nous avons opté pour l’utilisation de données mockées.
+Ce choix nous a permis de garantir la stabilité du MVP, de respecter les contraintes de temps et d’assurer une expérience utilisateur cohérente.
+L’intégration des API réelles est envisagée dans une phase ultérieure du projet.
+
 ## Fonctionnalités
 
 - Accessibilité et navigation au clavier
